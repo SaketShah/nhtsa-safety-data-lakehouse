@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze_source
+    database: awsdatacatalog
+    schema: default
+    tables:
+      - name: nhtsa_bronze_raw
+        description: "Raw NHTSA JSON recall data landed in the Bronze S3 bucket"

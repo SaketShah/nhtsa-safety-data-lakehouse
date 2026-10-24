@@ -1,0 +1,18 @@
+services:
+  kestra:
+    image: kestra/kestra:latest
+    container_name: kestra
+    command: server local
+    user: "root"
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Anchors the Kestra database and namespace files permanently to your machine
+      - kestra-data:/app/storage
+      - kestra-db:/app/data
+    restart: unless-stopped
+
+volumes:
+  kestra-data:
+  kestra-db:

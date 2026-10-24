@@ -1,0 +1,21 @@
+nhtsa_transformations:
+  target: dev
+  outputs:
+    dev:
+      type: athena
+      # The AWS region where you deployed your Terraform resources (usually us-east-1 or us-west-2)
+      region_name: us-east-2
+      
+      # The Glue Data Catalog database (Athena's default)
+      database: awsdatacatalog
+      
+      # The logical name for your Silver layer schema
+      schema: nhtsa_silver
+      
+      # Where Athena stores temporary query execution results
+      s3_staging_dir: s3://nhtsa-safety-lakehouse-silver-dev/athena-staging/
+      
+      # Where dbt will write your final, cleaned Parquet tables
+      s3_data_dir: s3://nhtsa-safety-lakehouse-silver-dev/parquet-data/
+      
+      threads: 4
