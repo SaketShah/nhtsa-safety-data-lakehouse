@@ -1,6 +1,8 @@
 {{ config(
     materialized='table',
-    format='parquet'
+    format='parquet',
+    s3_data_dir='s3://nhtsa-safety-lakehouse-gold-dev/parquet-data/',
+    s3_data_naming='table'
 ) }}
 
 SELECT
