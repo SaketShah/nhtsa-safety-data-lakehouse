@@ -52,4 +52,4 @@ SELECT
 
 FROM raw_complaints
 -- Locks the dataset exactly to your required analytical window
-WHERE try_cast(yeartxt AS INTEGER) BETWEEN 2021 AND 2026
+WHERE try_cast(yeartxt AS INTEGER) BETWEEN 2020 AND 2026

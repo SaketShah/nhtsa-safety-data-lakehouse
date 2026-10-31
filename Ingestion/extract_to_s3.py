@@ -3,18 +3,23 @@ import requests
 import boto3
 import time
 from datetime import datetime
-
 import os
 
 def fetch_historical_recalls():
-    # Grab the year from Kestra's environment variable
     env_year = os.getenv("INGESTION_YEAR")
     
-    # If Kestra sends a year, use only that year. Otherwise, fall back to the historical list.
-    if env_year:
+    # If the user types "ALL" in Kestra, run the historical backfill
+    if env_year == "ALL":
+        target_years = [2021, 2022, 2023, 2024, 2025]
+        
+    # If a specific year is typed (e.g., "2026"), run only that year
+    elif env_year and env_year.isdigit():
         target_years = [int(env_year)]
+        
+    # If left blank (like during scheduled weekly runs), default to the current year
     else:
-        target_years = [2020, 2021, 2022, 2023, 2024]
+        current_year = datetime.now().year
+        target_years = [current_year]
         
     target_makes = [
         "ford", "tesla", "honda", "toyota", "chevrolet",
@@ -28,7 +33,7 @@ def fetch_historical_recalls():
     total_records_pulled = 0
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    print("Starting dynamic 2020-2024 Historical Backfill for all models...")
+    print("Starting dynamic Historical Backfill for all models...")
     
     for year in target_years:
         for make in target_makes:

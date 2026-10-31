@@ -5,7 +5,6 @@ import io
 from datetime import datetime
 
 def fetch_bulk_complaints():
-    # Matching your exact existing architecture parameters
     bucket_name = "nhtsa-safety-lakehouse-bronze-dev"
     region = "us-east-2"
     s3 = boto3.client('s3', region_name=region)
@@ -18,7 +17,7 @@ def fetch_bulk_complaints():
     print(f"Downloading complete historical complaints ZIP from {zip_url}...")
     
     try:
-        # 1. Download the bulk ZIP file (timeout increased for large file size)
+        # 1. Download the bulk ZIP file
         response = requests.get(zip_url, timeout=300)
         response.raise_for_status()
         print("Download complete. Extracting file in memory...")
