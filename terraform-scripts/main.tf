@@ -254,4 +254,4 @@ resource "aws_s3_bucket_notification" "bronze_upload_trigger" {
   }
 
   depends_on = [aws_lambda_permission.allow_s3_to_invoke_lambda]
-}
+} 

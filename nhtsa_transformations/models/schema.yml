@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: gold_manufacturer_impact
+    description: "Aggregated NHTSA recall metrics grouped by automotive manufacturer."
+    columns:
+      - name: manufacturer
+        description: "The company that issued the recall."
+      - name: total_vehicles_affected
+        description: "Total sum of vehicles potentially impacted by the recalls."
+
+  - name: gold_component_risk
+    description: "Recall incident counts grouped by specific vehicle components."
