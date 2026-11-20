@@ -93,7 +93,6 @@
       border: 1px solid var(--border);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
       overflow: hidden;
-      /* 16:9.6 ratio gives extra vertical room for Power BI's bottom page bar */
       aspect-ratio: 16 / 9.6;
       min-height: 760px;
       width: 100%;
@@ -101,7 +100,8 @@
 
     iframe {
       width: 100%;
-      height: 100%;
+      margin-top: -38px;
+      height: calc(100% + 38px);
       border: none;
       display: block;
     }
@@ -117,7 +117,7 @@
     <header>
       <div class="title-group">
         <h1>NHTSA SafetyLens — Vehicle Risk Intelligence</h1>
-        <p>Interactive analytics across 211K+ federal vehicle complaints &amp; recalls (AWS S3, Fargate, Lambda, dbt, Athena &amp; Power BI)</p>
+        <p>Interactive analytics across 211K+ federal vehicle complaints &amp; recalls</p>
       </div>
       <div class="actions">
         <span class="badge">● Live Interactive Report</span>
@@ -126,10 +126,9 @@
     </header>
 
     <div class="dashboard-shell">
-      <!-- Append &filterPaneEnabled=false to your Publish to web URL to hide the right Filters strip -->
       <iframe
         title="NHTSA Vehicle Safety Dashboard"
-        src="https://app.powerbi.com/reportEmbed?reportId=b1f6af03-0c64-44d2-99db-0d5a575d51f3&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true""
+        src="https://app.powerbi.com/reportEmbed?reportId=b1f6af03-0c64-44d2-99db-0d5a575d51f3&autoAuth=true&embeddedDemo=true&filterPaneEnabled=false"
         allowfullscreen="true">
       </iframe>
     </div>
