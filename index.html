@@ -3,22 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NHTSA Vehicle Safety Data Lakehouse</title>
+  <title>NHTSA SafetyLens | Vehicle Risk Intelligence</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem; background: #f8fafc; color: #0f172a; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    h1 { margin-bottom: 0.25rem; }
-    p { color: #475569; margin-bottom: 1.5rem; }
-    .frame-wrap { background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; }
-    iframe { width: 100%; height: 720px; border: none; display: block; }
+    :root {
+      --bg: #0b1120;
+      --surface: rgba(17, 24, 39, 0.85);
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 1.5rem 2rem 2.5rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .title-group h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .title-group p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .btn {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+
+    .dashboard-shell {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      /* 16:9.6 ratio gives extra vertical room for Power BI's bottom page bar */
+      aspect-ratio: 16 / 9.6;
+      min-height: 760px;
+      width: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 1rem; }
+      .dashboard-shell { aspect-ratio: auto; height: 680px; min-height: 680px; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>NHTSA Vehicle Safety Analytics</h1>
-    <p>End-to-end AWS Data Lakehouse (Kestra, ECS Fargate, Lambda, S3, dbt, Athena) &amp; Interactive Power BI Dashboard.</p>
-    <div class="frame-wrap">
-      <iframe title="dashboard" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=b1f6af03-0c64-44d2-99db-0d5a575d51f3&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true"></iframe>
+    <header>
+      <div class="title-group">
+        <h1>NHTSA SafetyLens — Vehicle Risk Intelligence</h1>
+        <p>Interactive analytics across 211K+ federal vehicle complaints &amp; recalls (AWS S3, Fargate, Lambda, dbt, Athena &amp; Power BI)</p>
+      </div>
+      <div class="actions">
+        <span class="badge">● Live Interactive Report</span>
+        <a class="btn" href="https://github.com/SaketShah" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </header>
+
+    <div class="dashboard-shell">
+      <!-- Append &filterPaneEnabled=false to your Publish to web URL to hide the right Filters strip -->
+      <iframe
+        title="NHTSA Vehicle Safety Dashboard"
+        src="https://app.powerbi.com/reportEmbed?reportId=b1f6af03-0c64-44d2-99db-0d5a575d51f3&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true""
+        allowfullscreen="true">
+      </iframe>
     </div>
   </div>
 </body>
